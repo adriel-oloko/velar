@@ -1,115 +1,56 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Header } from '@/components/header'
+import { GiftIcon, XIcon } from 'lucide-react'
+import { SideNav } from '@/components/sidenav'
+import { MainDashboardSection } from '@/components/maindashboardsection'
+import { LeaderBoard } from '@/components/leaderboard'
+import { Exchange } from '@/components/exchange'
+import { useState } from 'react'
+import { Footer } from '@/components/single-components'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    const [isMenu, setIsMenu] = useState<boolean>(false)
+
+    return (
+        <section className="flex md:max-h-screen gap-4">
+            <SideNav isMenu={isMenu} func={() => setIsMenu(false)} />
+
+            <div className="w-full p-4 lg:py-6 md:pl-2 md:pr-6 overflow-y-auto overflow-x-hidden">
+                <Header func={() => setIsMenu(true)} />
+                <div className="_xq7m2r hidden items-center justify-between gap-1 p-2 md:py-1 rounded-md mt-4">
+                    <div className="flex gap-1 md:items-center">
+                        <GiftIcon strokeWidth={1.5} className="min-w-8 translate-y-0.5 lg:translate-y-0" />
+                        <p className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quam ex blanditiis ratione! Impedit repellendus consectetur odit molestiae vitae.</p>
+                    </div>
+                    <button title="Close alert" type="button" className="">
+                        <XIcon strokeWidth={1.5} size={20} />
+                    </button>
+                </div>
+
+                <div className="flex flex-col gap-4 md:flex-row mt-4 md:gap-6">
+                    <MainDashboardSection />
+                    <div className="min-w-1/4 md:w-1/4 h-full flex flex-1 flex-col gap-4 md:gap-6">
+                        <div className="_ftye7e p-4 rounded-md h-fit relative font-manrope">
+                            <div className="absolute inset-0 backdrop-blur rounded-xl"></div>
+                            <div className="relative leading-snug">
+                                <h2 className="text-xl font-bold leading-none">Get more powerful features now!</h2>
+                                <p className="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis cum, autem ex ullam molestias harum.</p>
+
+                                <div className="flex gap-2 text-sm font-semibold mt-4 xl:flex-row flex-wrap">
+                                    <button className="bg-white p-2 px-4 rounded-full text-black w-full">Upgrade to Pro</button>
+                                    <button className="bg-black/20 p-2 px-4 rounded-full w-full">Get 20% off for today</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <LeaderBoard />
+                        <Exchange />
+                    </div>
+                    <div className="md:hidden">
+                        <Footer />
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }

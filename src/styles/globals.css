@@ -1,26 +1,94 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-custom-black: #141414;
+    --color-custom-white: #f2f2f2;
+
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+
+    --font-inter: var(--font-inter);
+    --font-manrope: var(--font-manrope);
+    --font-rubik: var(--font-rubik);
+    --font-outfit: var(--font-outfit);
+    --font-montserrat: var(--font-montserrat);
+    --font-amiri: var(--font-amiri);
+
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0e0e0e; /*#0a0a0a;*/
+        --foreground: #ededed;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+._xq7m2r {
+    background-image: linear-gradient(to right, #be5c48, #a26bb5, #28193f, #0e0e0e);
+}
+
+._ftye7e {
+    background-image: linear-gradient(to right, #be5c48, #a26bb5, #28193f);
+}
+
+._ujr4oi {
+    background-image: url('../../public/gemini.jpeg');
+    background-size: contain;
+}
+
+._r1qdhn {
+    margin-top: 12px;
+}
+
+.ETH,
+.ADA,
+.SOL,
+.LINK,
+.MATIC,
+.ARB,
+.Solana, .solana, .polygon, .chainlink {
+    padding: 4px;
+}
+
+.SOL {
+    background-color: #000;
+}
+
+.Solana,
+.Cardano {
+    border-radius: 100%;
+}
+
+.Cardano, .cardano {
+    background: #fff;
+    padding: 2px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff/0; /* gray-200 */
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ff0000/0; /* gray-700 */
+    border-radius: 0px;
 }
