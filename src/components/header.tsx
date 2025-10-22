@@ -4,10 +4,25 @@ import { CommandF, SearchBar } from './single-components'
 import { HeaderProps } from '@/types'
 
 import { useThemeStore } from '@/store/store'
+import { createAvatar } from '@dicebear/core'
+import { identicon } from '@dicebear/collection'
+import { useEffect, useState } from 'react'
+import { useAccount } from 'wagmi'
 
 export function Header({ func }: HeaderProps) {
+    const account = useAccount()
+
     const theme = useThemeStore((state) => state.theme)
     const toggleTheme = useThemeStore((state) => state.toggleTheme)
+    const [profile, setProfile] = useState<string>('')
+
+    useEffect(() => {
+        const avatar = createAvatar(identicon, {
+            seed: account.address,
+        })
+
+        setProfile(avatar.toString())
+    }, [account.address])
 
     return (
         <header className="">
@@ -48,12 +63,12 @@ export function Header({ func }: HeaderProps) {
                             title="Open menu"
                             type="button"
                             className="">
-                            {theme == 'dark' ? <SunIcon strokeWidth={1.5} className='md:size-5' /> : <MoonIcon strokeWidth={1.5} className='md:size-5' />}
+                            {theme == 'dark' ? <SunIcon strokeWidth={1.5} className="md:size-5" /> : <MoonIcon strokeWidth={1.5} className="md:size-5" />}
                         </button>
                         <button title="Open menu" type="button" className="">
                             <BellIcon className="md:size-5" />
                         </button>
-                        <div className="size-6 rounded-full bg-white" />
+                        <div className="_r5t6wr size-6 rounded-full bg-white p-0.5" dangerouslySetInnerHTML={{ __html: profile }}></div>
                     </div>
                 </div>
             </nav>

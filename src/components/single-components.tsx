@@ -1,7 +1,9 @@
 import { LeaderBoardProps } from '@/types'
-import { ChevronDown, CommandIcon, EllipsisIcon, SearchIcon } from 'lucide-react'
+import { ChevronDown, ChevronsUpDownIcon, CommandIcon, EllipsisIcon, SearchIcon, WalletIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 type LabelTitleProps = {
     icon: React.ReactElement
@@ -134,3 +136,58 @@ export function Footer() {
         </footer>
     )
 }
+
+export const ConnectWallet = () => {
+    return (
+        <ConnectButton.Custom>
+            {({ account, chain, openAccountModal, openChainModal, openConnectModal, mounted }) => {
+                const ready = mounted
+                const connected = ready && account && chain
+                return (
+                    <div
+                        {...(!ready && {
+                            'aria-hidden': true,
+                            style: {
+                                opacity: 0,
+                                pointerEvents: 'none',
+                                userSelect: 'none',
+                            },
+                        })}>
+                        {(() => {
+                            if (!connected) {
+                                return (
+                                    <button onClick={openConnectModal} type="button" className="bg-black p-2 rounded-lg flex gap-2 items-center mt-4 w-full pr-3">
+                                        <WalletIcon fill="#000" size={32} className="p-1.5 bg-gray-900 rounded" />
+                                        Connect wallet
+                                    </button>
+                                )
+                            }
+                            if (chain.unsupported) {
+                                return (
+                                    <button onClick={openChainModal} type="button" className="bg-black p-2 rounded-lg flex gap-2 items-center mt-4 w-fit pr-3">
+                                        <WalletIcon fill="#000" size={32} className="p-1.5 bg-gray-900 rounded" />
+                                        Wrong network
+                                    </button>
+                                )
+                            }
+                            return (
+                                <div className="bg-black p-2 rounded-lg flex justify-between items-center mt-4 w-full">
+                                    <div className="flex gap-2 items-center">
+                                        <WalletIcon fill="#000" size={32} className="p-1.5 bg-gray-900 rounded" />
+                                        <div className="flex flex-col gap-1 text-xs font-medium">
+                                            <p className="truncate text-gray-600">Your Address</p>
+                                            <p className="font-semibold">{account.displayName}</p>
+                                        </div>
+                                    </div>
+
+                                    <ChevronsUpDownIcon strokeWidth={2} size={20} />
+                                </div>
+                            )
+                        })()}
+                    </div>
+                )
+            }}
+        </ConnectButton.Custom>
+    )
+}
+

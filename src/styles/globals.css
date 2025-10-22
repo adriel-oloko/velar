@@ -92,3 +92,7 @@ body {
     background-color: #ff0000/0; /* gray-700 */
     border-radius: 0px;
 }
+
+._r5t6wr * {
+    border-radius: 100%;
+}

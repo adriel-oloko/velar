@@ -6,6 +6,12 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
+import '@rainbow-me/rainbowkit/styles.css'
+import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { WagmiProvider } from 'wagmi'
+import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+
 const inter = Inter({ variable: '--font-inter', subsets: ['latin'] })
 const openSans = Open_Sans({
     variable: '--font-open-sans',
@@ -29,6 +35,15 @@ const amiri = Amiri({
     weight: ['400', '700'],
 })
 
+const config = getDefaultConfig({
+    appName: 'My RainbowKit App',
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+    chains: [mainnet, polygon, optimism, arbitrum, base],
+    ssr: true, // If your dApp uses server side rendering (SSR)
+})
+
+const queryClient = new QueryClient()
+
 export default function App({ Component, pageProps }: AppProps) {
     const theme = useThemeStore((state) => state.theme)
 
@@ -37,13 +52,17 @@ export default function App({ Component, pageProps }: AppProps) {
     }, [theme])
 
     return (
-        <>
-            <Head>
-                <title>Velar - Dashboard</title>
-            </Head>
-            <main className={`font-manrope bg-white dark:bg-background ${inter.variable} ${openSans.variable} ${manRope.variable} ${rubik.variable} ${outfit.variable} ${montserrat.variable} ${amiri.variable}`}>
-                <Component {...pageProps} />
-            </main>
-        </>
+        <WagmiProvider config={config}>
+            <QueryClientProvider client={queryClient}>
+                <RainbowKitProvider>
+                    <Head>
+                        <title>Velar - Dashboard</title>
+                    </Head>
+                    <main className={`font-manrope bg-white dark:bg-background ${inter.variable} ${openSans.variable} ${manRope.variable} ${rubik.variable} ${outfit.variable} ${montserrat.variable} ${amiri.variable}`}>
+                        <Component {...pageProps} />
+                    </main>
+                </RainbowKitProvider>
+            </QueryClientProvider>
+        </WagmiProvider>
     )
 }
