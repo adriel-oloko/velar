@@ -158,7 +158,7 @@ export const ConnectWallet = () => {
                                 return (
                                     <button onClick={openConnectModal} type="button" className="bg-black p-2 rounded-lg flex gap-2 items-center mt-4 w-full pr-3">
                                         <WalletIcon fill="#000" size={32} className="p-1.5 bg-gray-900 rounded" />
-                                        Connect wallet
+                                        <span className="truncate">Connect wallet</span>
                                     </button>
                                 )
                             }
@@ -166,7 +166,7 @@ export const ConnectWallet = () => {
                                 return (
                                     <button onClick={openChainModal} type="button" className="bg-black p-2 rounded-lg flex gap-2 items-center mt-4 w-fit pr-3">
                                         <WalletIcon fill="#000" size={32} className="p-1.5 bg-gray-900 rounded" />
-                                        Wrong network
+                                        <span className="truncate">Wrong network</span>
                                     </button>
                                 )
                             }
@@ -190,4 +190,3 @@ export const ConnectWallet = () => {
         </ConnectButton.Custom>
     )
 }
-

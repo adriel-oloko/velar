@@ -27,9 +27,10 @@ export default function Home() {
                     </button>
                 </div>
 
-                <div className="flex flex-col gap-4 md:flex-row mt-4 md:gap-6">
+                <div className="flex flex-col gap-4 xl:flex-row mt-4 md:gap-6">
                     <MainDashboardSection />
-                    <div className="min-w-1/4 md:w-1/4 h-full flex flex-1 flex-col gap-4 md:gap-6">
+
+                    <div className="min-w-1/4 lg:grid lg:grid-cols-3 xl:w-1/4 h-full xl:flex flex-1 flex-col gap-4 md:gap-6">
                         <div className="_ftye7e p-4 rounded-md h-fit relative font-manrope">
                             <div className="absolute inset-0 backdrop-blur rounded-xl"></div>
                             <div className="relative leading-snug">

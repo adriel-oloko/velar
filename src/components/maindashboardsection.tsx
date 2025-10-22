@@ -34,7 +34,7 @@ export function MainDashboardSection() {
     }, [])
 
     return (
-        <div className="w-full flex flex-col gap-4 md:gap-6 h-full md:max-w-3/4">
+        <div className="w-full flex flex-col gap-4 md:gap-6 h-full xl:max-w-3/4">
             <div ref={featured_work_ref} className="snap-x snap-mandatory flex gap-x-4 overflow-x-scroll md:gap-x-6 md:overflow-hidden">
                 <div
                     ref={(el) => {

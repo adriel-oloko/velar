@@ -68,7 +68,7 @@ export function Header({ func }: HeaderProps) {
                         <button title="Open menu" type="button" className="">
                             <BellIcon className="md:size-5" />
                         </button>
-                        <div className="_r5t6wr size-6 rounded-full bg-white p-0.5" dangerouslySetInnerHTML={{ __html: profile }}></div>
+                        <div className="_r5t6wr size-6 rounded-full bg-gray-100 p-0.5" dangerouslySetInnerHTML={{ __html: profile }}></div>
                     </div>
                 </div>
             </nav>
