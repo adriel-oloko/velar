@@ -28,7 +28,7 @@ export function Header({ func }: HeaderProps) {
         <header className="">
             <nav className="flex flex-col">
                 <div className="flex justify-between items-center md:hidden">
-                    <Image src={'/logo-white.svg'} className="w-40" width={1589} height={436} alt="" />
+                    {theme == 'dark' ? <Image src={'/logo-white.svg'} className="w-40 md:w-full" width={2144} height={338} alt="" /> : <Image src={'/logo-black.svg'} className="w-40 md:w-full" width={2144} height={338} alt="" />}
                     <div className="flex gap-4 text-background dark:text-foreground">
                         <button
                             onClick={() => {
