@@ -30,7 +30,7 @@ export function LeaderBoard() {
                             <tr key={key} className='text-background dark:text-foreground'>
                                 <td>
                                     <div className="flex gap-2 items-center">
-                                        <Image src={`/coins/${entry}.png`} className={`size-5 ${entry}`} width={2000} height={2000} alt="" />
+                                        <Image src={`/coins/${entry.toLowerCase()}.png`} className={`size-5 ${entry}`} width={2000} height={2000} alt="" />
                                         <span className="font-medium">{entry }</span>
                                     </div>
                                 </td>
