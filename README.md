@@ -1,40 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Web3 Asset Management Dashboard
 
-## Getting Started
+Multi-chain crypto portfolio interface with real-time wallet balance tracking and network switching.
 
-First, run the development server:
+🔗 **Live Demo:** [https://velar-brown.vercel.app/]
 
+![Dashboard Preview](./screenshots/dashboard.png)
+
+## 🎯 Project Overview
+
+A clean, responsive dashboard for managing crypto assets across multiple blockchain networks. Built to demonstrate Web3 integration patterns and modern React architecture.
+
+## ✨ Features
+
+- 🔗 **Multi-Wallet Support:** MetaMask, WalletConnect, Coinbase Wallet, Rainbow
+- 🔄 **Real-time Balance Tracking:** Automatic updates when wallet state changes
+- 🌐 **Multi-Chain:** Ethereum, Polygon, BSC, Arbitrum, Optimism
+- 📱 **Responsive Design:** Mobile-first, works seamlessly on all devices
+- ⚡ **Fast Performance:** Optimized queries with Tanstack Query
+- 🎨 **Clean UI:** Built with custom components and TailwindCSS
+
+## 🛠 Tech Stack
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Web3:** Wagmi v2, WalletConnect v2, Viem
+- **State:** Zustand
+- **Data Fetching:** Tanstack Query (Planned)
+- **Styling:** TailwindCSS
+- **Deployment:** Vercel
+
+## 🚀 Quick Start
 ```bash
+# Clone repository
+git clone https://github.com/adriel-oloko/velar.git
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Add your WalletConnect Project ID
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔑 Environment Variables
+```bash
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id_here
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Get your Project ID from [WalletConnect Cloud](https://cloud.walletconnect.com/)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🎨 Key Components
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Wallet Connection
+```typescript
+// Uses RainbowKit for beautiful wallet connection modal
+<ConnectButton />
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Balance Display
+```typescript
+// Real-time balance fetching with Wagmi hooks
+const { data: balance } = useBalance({
+  address: address,
+  token: tokenAddress,
+  watch: true, // Auto-update on changes
+})
+```
 
-## Learn More
+### Network Switching
+```typescript
+// Seamless network switching across chains
+const { switchNetwork } = useSwitchNetwork({
+  onSuccess: (data) => {
+    toast.success(`Switched to ${data.name}`)
+  }
+})
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Features Breakdown
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Multi-Chain Support
+- Ethereum Mainnet
+- Polygon
+- Binance Smart Chain
+- Arbitrum
+- Optimism
+- Base
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Wallet Integrations
+- MetaMask (Browser Extension + Mobile)
+- WalletConnect (Mobile wallets)
+- Coinbase Wallet
+- Rainbow Wallet
+- Trust Wallet (Browser Extension + Mobile)
 
-## Deploy on Vercel
+### Real-time Updates
+- Automatic balance refresh
+- Transaction status monitoring
+- Network change detection
+- Account switch handling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📚 What I Learned
+- **Wagmi v2 hooks architecture** - Cleaner, more composable than v1
+- **WalletConnect v2 integration** - Improved mobile wallet support
+- **Multi-chain state management** - Handling network-specific logic
+- **Web3 error handling** - User-friendly messages for common failures
+- **Gas estimation** - Calculating transaction costs across chains
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 🎯 Design Decisions
+
+### Why Wagmi over ethers.js directly?
+Wagmi provides React hooks that handle connection state, disconnection, network switching, and caching out of the box. Reduces boilerplate by ~70%.
+
+### Why Zustand for global state?
+Lightweight alternative to Redux for wallet-level state that needs to persist across components. Only 1KB vs Redux's 10KB+.
+
+## 🐛 Known Issues / Roadmap
+- [ ] Add token swap functionality
+- [ ] Implement transaction history
+- [ ] Add NFT gallery view
+- [ ] Support more EVM chains
+- [ ] Add price charts
+
+## 📝 Notes
+
+This dashboard demonstrates:
+- Modern Web3 development patterns
+- Clean component architecture
+- Type-safe blockchain interactions
+- Production-ready error handling
+
+**Not included:** Backend, database, user authentication (frontend-only demo)
+
+## 🤝 Contributing
+
+This is a portfolio project, but feedback and suggestions are welcome via issues.
+
+## 📄 License
+
+MIT License - feel free to use this as reference for your own projects
+
+---
+
+**Built by Adriel Oloko** • [Portfolio](https://ad-portfolio-iota.vercel.app) • [LinkedIn](https://linkedin.com/in/adriel-oloko-115602203)
