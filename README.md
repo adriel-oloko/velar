@@ -16,7 +16,6 @@ A clean, responsive dashboard for managing crypto assets across multiple blockch
 - 🔄 **Real-time Balance Tracking:** Automatic updates when wallet state changes
 - 🌐 **Multi-Chain:** Ethereum, Polygon, BSC, Arbitrum, Optimism
 - 📱 **Responsive Design:** Mobile-first, works seamlessly on all devices
-- ⚡ **Fast Performance:** Optimized queries with Tanstack Query
 - 🎨 **Clean UI:** Built with custom components and TailwindCSS
 
 ## 🛠 Tech Stack
@@ -69,15 +68,6 @@ const { data: balance } = useBalance({
 })
 ```
 
-### Network Switching
-```typescript
-// Seamless network switching across chains
-const { switchNetwork } = useSwitchNetwork({
-  onSuccess: (data) => {
-    toast.success(`Switched to ${data.name}`)
-  }
-})
-```
 
 ## 🔧 Features Breakdown
 
@@ -95,12 +85,6 @@ const { switchNetwork } = useSwitchNetwork({
 - Coinbase Wallet
 - Rainbow Wallet
 - Trust Wallet (Browser Extension + Mobile)
-
-### Real-time Updates
-- Automatic balance refresh
-- Transaction status monitoring
-- Network change detection
-- Account switch handling
 
 ## 📚 What I Learned
 - **Wagmi v2 hooks architecture** - Cleaner, more composable than v1

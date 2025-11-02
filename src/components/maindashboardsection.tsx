@@ -4,6 +4,8 @@ import { EllipseButton, Footer } from './single-components'
 import { Staking } from './staking'
 import { useState, useRef, useEffect } from 'react'
 
+import { useAccount, useBalance } from 'wagmi'
+
 export function MainDashboardSection() {
     const [visibleIndex, setVisibleIndex] = useState<number>(0)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
@@ -33,6 +35,15 @@ export function MainDashboardSection() {
         return () => observer.disconnect()
     }, [])
 
+    const { isConnected, address } = useAccount()
+    const { data: balance } = useBalance({
+        address: address,
+    })
+
+    useEffect(() => {
+        console.log(balance)
+    }, [balance])
+
     return (
         <div className="w-full flex flex-col gap-4 md:gap-6 h-full xl:max-w-3/4">
             <div ref={featured_work_ref} className="snap-x snap-mandatory flex gap-x-4 overflow-x-scroll md:gap-x-6 md:overflow-hidden">
@@ -53,10 +64,16 @@ export function MainDashboardSection() {
                         <EllipseButton />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                    <div className="grid md:grid-cols-1 gap-4 mt-4 w-full">
                         <div className="flex flex-col gap-2">
                             <h3 className="text-4xl font-semibold font-manrope">
-                                $443,392<span className="text-gray-400/50">.90</span>
+                                {balance ? (
+                                    <>{(Number(balance.value)/(10**18)).toFixed(5)} {balance.symbol}</>
+                                ) : (
+                                    <>
+                                        $0<span className="text-gray-400/50">.**</span>
+                                    </>
+                                )}
                             </h3>
                             <div className="">
                                 <div className="bg-green-500 shadow-green-400/50 dark:bg-green-500/40 shadow text-green-100 flex items-center gap-2 px-1 py-0.5 w-fit pr-2 text-xs rounded-full">
@@ -90,7 +107,7 @@ export function MainDashboardSection() {
                     <div className="grid grid-cols-2">
                         <div className="mt-4">
                             <p className="text-gray-400/50 font-medium text-sm">Today&apos;s PnL</p>
-                            <p className="text-3xl font-medium font-montserrat">$24,000.00</p>
+                            <p className="text-3xl font-medium font-montserrat">$0,000.00</p>
                             <div className="mt-2">
                                 <div className="flex gap-2">
                                     <div className="bg-green-500/40 shadow-green-400/50 shadow text-green-100 flex items-center gap-2 px-1 py-0.5 w-fit pr-2 text-xs rounded-full">
