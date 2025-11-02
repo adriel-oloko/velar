@@ -4,7 +4,7 @@ Multi-chain crypto portfolio interface with real-time wallet balance tracking an
 
 🔗 **Live Demo:** [https://velar-brown.vercel.app/]
 
-![Dashboard Preview](./screenshots/dashboard.png)
+![Dashboard Preview](./screenshots/velar.jpg)
 
 ## 🎯 Project Overview
 
